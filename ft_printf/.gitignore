@@ -1,0 +1,13 @@
+*.DS_STORE
+*.dSYM
+
+*.o
+*.d
+
+*.a
+*.out
+
+*.swp
+
+.ccls-cache/
+.printfTester/
