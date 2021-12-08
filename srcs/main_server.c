@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:25:35 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/08 14:06:51 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:07:27 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_add_char_to_str(char *str, char c)
 	return (result);
 }
 
-static char	ft_print_error(int pid, char *message)
+static void	ft_print_error(int pid, char *message)
 {
 	if (message)
 		free(message);
@@ -49,7 +49,7 @@ static char	ft_print_error(int pid, char *message)
 
 static char	*ft_print_message(char *message)
 {
-	ft_printf("%s\n", message);
+	ft_putstr_fd(message, 1);
 	free(message);
 	return (NULL);
 }
