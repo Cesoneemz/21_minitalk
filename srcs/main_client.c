@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:00:17 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/14 13:05:52 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:56:24 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_send_null(int pid, char *message)
 
 	if (counter++ != 8)
 	{
-		if (kill(pid, SIGUSR1) == -1)
+		if (kill(pid, SIGUSR2) == -1)
 			ft_print_error(message);
 		return (0);
 	}
@@ -49,10 +49,10 @@ static int	ft_send_message(int pid, char *str)
 	{
 		if (message[bits / 8] & (0x80 >> (bits % 8)))
 		{
-			if (kill(save_pid, SIGUSR2) == -1)
+			if (kill(save_pid, SIGUSR1) == -1)
 				ft_print_error(message);
 		}
-		else if (kill(save_pid, SIGUSR1) == -1)
+		else if (kill(save_pid, SIGUSR2) == -1)
 			ft_print_error(message);
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:25:35 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/14 13:05:58 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:43:29 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	ft_print_error(int pid, char *message)
 
 static char	*ft_print_message(char *message)
 {
-	ft_printf("%s\n", message);
+	write(1, message, ft_strlen(message));
 	free(message);
 	return (NULL);
 }
@@ -62,9 +62,9 @@ static void	ft_handler(int signum, siginfo_t *info, void *context)
 
 	(void)context;
 	if (signum == SIGUSR1)
-		c ^= 0x80 >> bits;
-	else if (signum == SIGUSR2)
 		c |= 0x80 >> bits;
+	else if (signum == SIGUSR2)
+		c ^= 0x80 >> bits;
 	if (++bits == 8)
 	{
 		if (c)

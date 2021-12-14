@@ -1,7 +1,7 @@
 *.DSYM
 *.idea
 
-clent
+client
 server
 
 *.o
