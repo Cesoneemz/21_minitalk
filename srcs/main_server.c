@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:25:35 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/08 14:06:51 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:05:58 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ int	main(void)
 	ft_printf("PID: %i\n", getpid());
 	while (1)
 		pause();
+	return (0);
 }

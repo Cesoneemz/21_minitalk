@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:00:17 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/08 14:04:19 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:05:52 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ int	main(int argc, char **argv)
 	ft_send_message(ft_atoi(argv[1]), argv[2]);
 	while (1)
 		pause();
+	return (0);
 }

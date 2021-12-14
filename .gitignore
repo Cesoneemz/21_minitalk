@@ -3,3 +3,6 @@
 
 clent
 server
+
+*.o
+*.d
