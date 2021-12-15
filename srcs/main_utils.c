@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:40:35 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/14 12:48:30 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:11:12 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	ft_pid_validator(char *pid)
 {
 	if (!pid)
+		return (0);
+	if (ft_strlen(pid) > 5)
 		return (0);
 	while (*pid)
 	{

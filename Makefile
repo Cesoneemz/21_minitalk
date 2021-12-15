@@ -6,7 +6,7 @@
 #    By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/14 12:45:09 by wlanette          #+#    #+#              #
-#    Updated: 2021/12/14 17:51:49 by wlanette         ###   ########.fr        #
+#    Updated: 2021/12/15 12:32:03 by wlanette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,37 +20,41 @@ FT_PRINTF_DIR	= ./ft_printf/
 SRC_CLIENT		= ./srcs/main_client.c ./srcs/main_utils.c
 SRC_SERVER		= ./srcs/main_server.c 
 INCS			= ./includes/
+INCS_HEADER		= ./includes/minitalk.h
 
-OBJS_CLIENT 	 = 	$(patsubst c_%.c,c_%.o,$(SRC_CLIENT))
-OBJS_SERVER 	 = 	$(patsubst s_%.c,s_%.o,$(SRC_SERVER))
+OBJS_CLIENT		= $(SRC_CLIENT:.c=.o)
+OBJS_SERVER		= $(SRC_SERVER:.c=.o)
 
-CC				= clang
-CFLAGS			= -Wall -Wextra -Werror
+CC				= gcc
+CFLAGS			= -Wall -Wextra -Werror -I$(INCS)
 RM				= rm -rf
-LIBC			= ar rcs
 
-all:		$(SERVER) $(CLIENT)
+all:		$(NAME)
 
-$(NAME):	all
+$(NAME):	$(SERVER) $(CLIENT)
 
-$(SERVER): $(FT_PRINTF) $(OBJS_SERVER)
-	$(CC) $(CFLAGS) $(OBJS_SERVER) $(FT_PRINTF) -I$(INCS) -o $(SERVER)
+$(SERVER):  $(FT_PRINTF) $(OBJS_SERVER) $(INCS_HEADER)
+			$(CC) $(CFLAGS) $(OBJS_SERVER) $(FT_PRINTF) -o $(SERVER)
 
-$(CLIENT): $(FT_PRINTF) $(OBJS_CLIENT)
-	$(CC) $(CFLAGS) $(OBJS_CLIENT) $(FT_PRINTF) -I$(INCS) -o $(CLIENT)
+$(CLIENT):  $(FT_PRINTF) $(OBJS_CLIENT) $(INCS_HEADER)
+			$(CC) $(CFLAGS) $(OBJS_CLIENT) $(FT_PRINTF) -o $(CLIENT)
 
 $(FT_PRINTF):
-			@make all -C $(FT_PRINTF_DIR)
+			make all -C $(FT_PRINTF_DIR)
 
 clean:		
-			@make clean -C $(FT_PRINTF_DIR)
-			$(RM) $(CLIENT) $(SERVER)
+			make clean -C $(FT_PRINTF_DIR)
+			$(RM) $(OBJS_SERVER) $(OBJS_CLIENT)
 
 fclean:		clean
-			@make fclean -C $(FT_PRINTF_DIR)
+			make fclean -C $(FT_PRINTF_DIR)
+			$(RM) $(CLIENT) $(SERVER)
 
 re:			fclean all 
 
-bonus:		all
+bonus:		$(SERVER) $(CLIENT)
 
-.PHONY:		all clean fclean $(CLIENT) $(SERVER) $(FT_PRINTF) $(NAME)
+norm:		
+			norminette
+
+.PHONY:		all clean fclean bonus re 

@@ -1,8 +1,10 @@
 *.DSYM
 *.idea
+*.DS_Store
 
 client
 server
 
 *.o
 *.d
+*.gch
