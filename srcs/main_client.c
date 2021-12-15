@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:00:17 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/15 14:53:35 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/15 15:00:09 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_router(int signum)
 	end_signal = 0;
 	if (signum == SIGUSR1)
 	{
-		usleep(300);
+		usleep(150);
 		end_signal = ft_send_message(0, 0);
 	}
 	else if (signum == SIGUSR2)
