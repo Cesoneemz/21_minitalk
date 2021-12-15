@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:00:17 by wlanette          #+#    #+#             */
-/*   Updated: 2021/12/15 14:32:21 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/12/15 14:53:35 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ static int	ft_send_message(int pid, char *str)
 	if (message[++bits / 8])
 	{
 		if (message[bits / 8] & (0x80 >> (bits % 8)))
-			kill(save_pid, SIGUSR1);
-		else
-			kill(save_pid, SIGUSR2);
-		usleep(300);
+		{
+			if (kill(save_pid, SIGUSR1) == -1)
+				ft_print_error(message);
+		}
+		else if (kill(save_pid, SIGUSR2) == -1)
+			ft_print_error(message);
 		return (0);
 	}
 	if (!ft_send_null(save_pid, message))
@@ -66,7 +68,10 @@ static void	ft_router(int signum)
 
 	end_signal = 0;
 	if (signum == SIGUSR1)
+	{
+		usleep(300);
 		end_signal = ft_send_message(0, 0);
+	}
 	else if (signum == SIGUSR2)
 		exit(EXIT_FAILURE);
 	if (end_signal)
